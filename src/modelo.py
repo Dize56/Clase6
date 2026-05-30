@@ -13,3 +13,13 @@ def entrenar_modelo(X_train, y_train, n_estimators=100, random_state=42):
     modelo = RandomForestClassifier(n_estimators=n_estimators, random_state=random_state)
     modelo.fit(X_train, y_train)
     return modelo
+
+def evaluar_modelo(modelo, X_test, y_test):
+    # Evaluar el modelo con métricas básicas de clasificación
+    y_pred = modelo.predict(X_test)
+    accuracy = accuracy_score(y_test, y_pred)
+    reporte_texto = classification_report(y_test, y_pred)
+    return {
+        "accuracy": float(accuracy),
+        "reporte_texto": reporte_texto,
+    }
